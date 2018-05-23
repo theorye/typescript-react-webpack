@@ -2,8 +2,21 @@ const path = require('path');
 const webpack = require('webpack');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const TypeDocWebpackPlugin = require('typedoc-webpack-plugin');
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 module.exports = {
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+      cacheGroups: {
+        vendor: {
+          name: "vendor",
+          chunks: "initial",
+          minChunks: 2
+        }
+      }
+    }
+  },
   entry: {
     main: ["webpack-hot-middleware/client?reload=true", './src/main']
   },
@@ -89,6 +102,9 @@ module.exports = {
       jsx: 'react',
       includeDeclarations: false,
       ignoreCompilerErrors: true,
+    }),
+    new BundleAnalyzerPlugin({
+      generateStatsFile: true
     })
   ]
 };

@@ -7,13 +7,25 @@ const CompressionPlugin = require("compression-webpack-plugin");
 const BrotliPlugin = require("brotli-webpack-plugin");
 
 module.exports = {
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+      cacheGroups: {
+        vendor: {
+          name: "vendor",
+          chunks: "initial",
+          minChunks: 2
+        }
+      }
+    }
+  },
   entry: {
     main: ['./src/main']
   },
   mode: 'production',
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: 'app.bundle.js',
+    filename: '[name].bundle.js',
     publicPath: "/"
   },
   devtool: "source-map",
