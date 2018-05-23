@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon",
     "clean": "rimraf dist",
-    "build": "NODE_ENV=production webpack --config=config/webpack.prod.js",
+    "build": "npm run clean && NODE_ENV=production webpack --config=config/webpack.prod.js",
     "build:dev": "npm run clean && NODE_ENV=production webpack --config=config/webpack.dev.js",
     "wp:dev:server": "webpack-dev-server --config=config/webpack.dev.js",
     "prod": "NODE_ENV=production ts-node src/server/main.ts"
