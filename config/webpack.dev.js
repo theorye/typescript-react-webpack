@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const TypeDocWebpackPlugin = require('typedoc-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -76,6 +77,18 @@ module.exports = {
     new HTMLWebpackPlugin({
       template: "./src/index.html",
       title: "Link"
-    }),  
+    }),
+    new TypeDocWebpackPlugin({
+      out: './docs',
+      module: 'commonjs',
+      target: 'es6',
+      exclude: '**/node_modules/**/*.*',
+      experimentalDecorators: true,
+      excludeExternals: true,
+      // theme: 'markdown',
+      jsx: 'react',
+      includeDeclarations: false,
+      ignoreCompilerErrors: true,
+    })
   ]
 };
