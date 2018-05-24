@@ -18,7 +18,7 @@ module.exports = {
     }
   },
   entry: {
-    main: ["webpack-hot-middleware/client?reload=true", './src/main']
+    main: ["webpack-hot-middleware/client?reload=true", './src/index']
   },
   mode: 'development',
   output: {
